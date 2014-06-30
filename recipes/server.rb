@@ -64,7 +64,7 @@ end
 
 service 'keystone' do
   service_name platform_options['keystone_service']
-  supports status: true, restart: true
+  supports :status => true, :restart => true
 
   action [:enable]
 
@@ -203,16 +203,16 @@ template '/etc/keystone/keystone.conf' do
   group node['openstack']['identity']['group']
   mode   00644
   variables(
-    sql_connection: sql_connection,
-    bind_address: bind_address,
-    bootstrap_token: bootstrap_token,
-    memcache_servers: memcache_servers,
-    public_endpoint: public_endpoint,
-    public_port: identity_endpoint.port,
-    admin_endpoint: admin_endpoint,
-    admin_port: identity_admin_endpoint.port,
-    ldap: node['openstack']['identity']['ldap'],
-    token_expiration: node['openstack']['identity']['token']['expiration']
+    :sql_connection => sql_connection,
+    :bind_address => bind_address,
+    :bootstrap_token => bootstrap_token,
+    :memcache_servers => memcache_servers,
+    :public_endpoint => public_endpoint,
+    :public_port => identity_endpoint.port,
+    :admin_endpoint => admin_endpoint,
+    :admin_port => identity_admin_endpoint.port,
+    :ldap => node['openstack']['identity']['ldap'],
+    :token_expiration => node['openstack']['identity']['token']['expiration']
   )
 
   notifies :restart, 'service[keystone]', :immediately
@@ -235,7 +235,7 @@ template '/etc/keystone/default_catalog.templates' do
   group node['openstack']['identity']['group']
   mode   00644
   variables(
-    uris: uris
+    :uris => uris
   )
 
   notifies :restart, 'service[keystone]', :immediately
