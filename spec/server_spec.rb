@@ -302,8 +302,8 @@ describe 'openstack-identity::server' do
       describe 'with pki' do
         describe 'without {certfile,keyfile,ca_certs}_url attributes set' do
           it 'executes' do
-            ::FileTest.should_receive(:exists?)
-              .with('/etc/keystone/ssl/private/signing_key.pem')
+            ::FileTest.should_receive(:exists?)\
+              .with('/etc/keystone/ssl/private/signing_key.pem')\
               .and_return(false)
 
             expect(chef_run).to run_execute(cmd).with(
@@ -329,8 +329,8 @@ describe 'openstack-identity::server' do
         end
 
         it 'does not execute when dir exists' do
-          ::FileTest.should_receive(:exists?)
-            .with('/etc/keystone/ssl/private/signing_key.pem')
+          ::FileTest.should_receive(:exists?)\
+            .with('/etc/keystone/ssl/private/signing_key.pem')\
             .and_return(true)
 
           expect(chef_run).not_to run_execute(cmd).with(
@@ -394,7 +394,7 @@ describe 'openstack-identity::server' do
         describe 'bind_interface is eth0' do
           before do
             node.set['openstack']['endpoints']['identity-bind']['bind_interface'] = 'eth0'
-            ::Chef::Recipe.any_instance.stub(:address_for)
+            ::Chef::Recipe.any_instance.stub(:address_for)\
               .and_return('10.0.0.2')
           end
 
