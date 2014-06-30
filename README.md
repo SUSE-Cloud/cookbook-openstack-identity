@@ -1,3 +1,10 @@
+READ THIS
+=========
+
+**This cookbook is used to track the upstream cookbook at stackforge/cookbook-openstack-identity (which it is a fork of). We need to port everything to ruby-1.8.7 for SUSE Cloud. The intent is to constantly rebase the few fix-commits on top of new upstream changes.**
+
+**Please don't push any functional changes to this cookbook and also beware that this repository's git history WILL be overwritten.**
+
 Description
 ===========
 
